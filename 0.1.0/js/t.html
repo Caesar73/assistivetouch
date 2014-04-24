@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>完美拖拽</title>
+<style type="text/css">
+html, body {
+        overflow:hidden;
+}
+body, div, h2, p {
+        margin:0;
+        padding:0;
+}
+body {
+        color:#fff;
+        background:#000;
+        font:12px/2 Arial;
+}
+p {
+        padding:0 10px;
+        margin-top:10px;
+}
+span {
+        color:#ff0;
+        padding-left:5px;
+}
+#box {
+        position:absolute;
+        width:300px;
+        height:150px;
+        background:#333;
+        border:2px solid #ccc;
+        top:150px;
+        left:400px;
+        margin:0;
+}
+#box h2 {
+        height:25px;
+        cursor:move;
+        background:#222;
+        border-bottom:2px solid #ccc;
+        text-align:right;
+        padding:0 10px;
+}
+#box h2 a {
+        color:#fff;
+        font:12px/25px Arial;
+        text-decoration:none;
+        outline:none;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+        var bDrag = false;
+        var _x,_y;
+        var $box=$("#box")
+        var aPos = [{
+                x: $("#box").offset().left,
+                y: $("#box").offset().top
+        }];
+        $("span:eq(1)").text(aPos[0].y);
+        $("span:eq(2)").text(aPos[0].x);
+        $("#box h2:first").mousedown(function(event){
+                var e=event || window.event;
+                bDrag = true;
+                _x=e.pageX-$box.position().left;
+                _y=e.pageY-$box.position().top;
+                return false
+        })
+        $(document).mousemove(function(event){       
+                if(!bDrag) return false;
+                var e=event || window.event;
+                var x=e.pageX-_x;
+                var y=e.pageY-_y;
+                var maxL = $(document).width() - $box.outerWidth();
+        var maxT = $(document).height() - $box.outerHeight();       
+        x = x < 0 ? 0: x;
+        x = x > maxL ? maxL: x;
+        y = y < 0 ? 0: y;
+        y = y > maxT ? maxT: y;
+                $box.css({left:x,top:y});
+                aPos.push({
+            x: x,
+            y: y
+        });
+                status()
+                return false       
+        }).mouseup(function(){
+                bDrag = false;
+                status()
+                return false
+        })
+        $("#box h2:first a").click(function(){
+			if (aPos.length == 1) return;
+			var timer = setInterval(function() {
+				var oPos = aPos.pop();
+				oPos ? ($box.css({left : oPos.x + "px", top : oPos.y + "px"})) : clearInterval(timer)
+                        status();
+			},30);
+        }).mousedown(function(){return false})
+        function status() {
+        $("#box span:eq(0)").text(bDrag);
+        $("#box span:eq(1)").text($box.position().top);
+        $("#box span:eq(2)").text($box.position().left);
+    }
+    status()
+})
+</script>
+</head>
+
+<body>
+<div id="box">
+  <h2><a href="javascript:;">点击回放拖动轨迹</a></h2>
+  <p><strong>Drag:</strong><span></span></p>
+  <p><strong>top:</strong><span></span></p>
+  <p><strong>left:</strong><span></span></p>
+</div>
+</body>
+</html>
