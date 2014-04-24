@@ -1,0 +1,24 @@
+*{ margin: 0; padding: 0; }
+.oh{ overflow: hidden; }
+.br100{ border-radius: 100%; }
+.br10{ border-radius: 10%; }
+.op20{ opacity: 0.2; filter:alpha(opacity=20); }
+/**************  Assistivetouch  *********************/
+
+.assistivetouch{ width: 50px; height: 50px; position: absolute; top: 50px; }
+.assistivetouch :hover{ width: 50px; height: 50px; cursor: pointer; position: relative; }
+.assistivetouch .assistivetouch-board{ width: 50px; height: 50px; background-color: #000; position: relative; z-index: 96; }
+.assistivetouch .assistivetouch-dark-gray-round{ width: 40px; height: 40px; background-color: #666; position: absolute; top: 50%; left: 50%; margin-top: -20px; margin-left: -20px; z-index: 97; }
+.assistivetouch .assistivetouch-light-gray-round{ width: 34px; height: 34px; background-color: #CCC; position: absolute; top: 50%; left: 50%; margin-top: -17px; margin-left: -17px; z-index: 98; }
+.assistivetouch .assistivetouch-white-round{ width: 28px; height: 28px; background-color: #FFF; position: absolute; top: 50%; left: 50%; margin-top: -14px; margin-left: -14px; z-index: 99; }
+
+/**************  Assistivetouch  Menu ****************/
+#atMenu{ position: fixed; background-color: #AAA; z-index: 90; }
+
+.atMenu-info-board{}
+.atMenu-btn{ width: 50px; height: 50px; position: relative; opacity: 0.2; background-color: #FFF; }
+.atMenu-btn :hover{ width: 50px; height: 50px; cursor: pointer; position: relative; background-color: #FFF; opacity: 1; }
+.atMenu-btn .atMenu-board{ width: 50px; height: 50px; background-color: #000; position: relative; z-index: 96; }
+.atMenu-btn .atMenu-dark-gray-round{ width: 40px; height: 40px; background-color: #666; position: absolute; top: 50%; left: 50%; margin-top: -20px; margin-left: -20px; z-index: 97; }
+.atMenu-btn .atMenu-light-gray-round{ width: 34px; height: 34px; background-color: #CCC; position: absolute; top: 50%; left: 50%; margin-top: -17px; margin-left: -17px; z-index: 98; }
+.atMenu-btn .atMenu-white-round{ width: 28px; height: 28px; background-color: #FFF; position: absolute; top: 50%; left: 50%; margin-top: -14px; margin-left: -14px; z-index: 99; }
